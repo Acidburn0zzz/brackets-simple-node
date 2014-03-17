@@ -33,11 +33,15 @@ maxerr: 50, node: true */
     /**
      * @private
      * Handler function for the simple.getMemory command.
-     * @return {{total: number, free: number}} The total and free amount of
-     *   memory on the user's system, in bytes.
+     * @param {boolean} total If true, return total memory; if false, return free memory only.
+     * @return {number} The amount of memory.
      */
-    function cmdGetMemory() {
-        return {total: os.totalmem(), free: os.freemem()};
+    function cmdGetMemory(total) {
+        if (total) {
+            return os.totalmem();
+        } else {
+            return os.freemem();
+        }
     }
     
     /**
@@ -52,12 +56,14 @@ maxerr: 50, node: true */
             "simple",       // domain name
             "getMemory",    // command name
             cmdGetMemory,   // command handler function
-            false,          // this command is synchronous
-            "Returns the total and free memory on the user's system in bytes",
-            [],             // no parameters
-            [{name: "memory",
-                type: "{total: number, free: number}",
-                description: "amount of total and free memory in bytes"}]
+            false,          // this command is synchronous in Node
+            "Returns the total or free memory on the user's system in bytes",
+            [{name: "total", // parameters
+                type: "string",
+                description: "True to return total memory, false to return free memory"}],
+            [{name: "memory", // return values
+                type: "number",
+                description: "amount of memory in bytes"}]
         );
     }
     
