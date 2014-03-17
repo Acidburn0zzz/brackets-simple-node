@@ -37,7 +37,7 @@ define(function (require, exports, module) {
     // Helper function that runs the simple.getMemory command and
     // logs the result to the console
     function logMemory() {
-        simpleDomain.exec("getMemory", true)
+        simpleDomain.exec("getMemory", false)
             .done(function (memory) {
                 console.log(
                     "[brackets-simple-node] Memory: %d bytes free",

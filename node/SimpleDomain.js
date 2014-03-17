@@ -46,13 +46,13 @@ maxerr: 50, node: true */
     
     /**
      * Initializes the test domain with several test commands.
-     * @param {DomainManager} DomainManager The DomainManager for the server
+     * @param {DomainManager} domainManager The DomainManager for the server
      */
-    function init(DomainManager) {
-        if (!DomainManager.hasDomain("simple")) {
-            DomainManager.registerDomain("simple", {major: 0, minor: 1});
+    function init(domainManager) {
+        if (!domainManager.hasDomain("simple")) {
+            domainManager.registerDomain("simple", {major: 0, minor: 1});
         }
-        DomainManager.registerCommand(
+        domainManager.registerCommand(
             "simple",       // domain name
             "getMemory",    // command name
             cmdGetMemory,   // command handler function
